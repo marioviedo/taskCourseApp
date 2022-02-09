@@ -1,11 +1,17 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 const TaskItem = (props) => {
   return (
     <View style={styles.itemContainer}>
-      <Text style={styles.itemTitle}>{props.task.title}</Text>
-      <Text style={styles.itemDescription}>{props.task.description}</Text>
+      <TouchableOpacity>
+        <Text style={styles.itemTitle}>{props.task.title}</Text>
+        <Text style={styles.itemDescription}>{props.task.description}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text>Delete</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -18,7 +24,10 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFFFFF',        
         padding:20,
         marginVertical:8,
-        borderRadius:10
+        borderRadius:10,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
     },
     itemTitle:{
         color:'#1F2937'
