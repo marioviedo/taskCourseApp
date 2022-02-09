@@ -1,14 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { deleteTask } from '../api';
 
 const DeleteButton = (props) => {
 
-    const deleteTask = () =>{
-        console.log("delete task number : " + props.id)
+    const deleteTaskButton = async () =>{        
+        const response = await deleteTask(props.id)
+        console.log(response)
     }
 
     return (
-        <TouchableOpacity onPress={deleteTask}>
+        <TouchableOpacity onPress={deleteTaskButton}>
             <Text style={styles.textDeleteButton}>Delete</Text>
         </TouchableOpacity>    
     );

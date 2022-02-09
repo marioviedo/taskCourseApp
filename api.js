@@ -17,3 +17,10 @@ export const createTask = async (newTask) =>{
 
     return await response.json()
 }
+
+export const deleteTask = async (id) =>{
+    const response = await fetch(`${apiEndPoint}/${id}`, {
+        method:'DELETE'
+    })
+    return await response.json()
+}
