@@ -2,6 +2,7 @@ import { Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import Layout from '../components/layout';
 import { createTask } from '../api';
+import { colorAccent, colorPrimary, colorSucces } from '../colors';
 
 const TaskFormScreen = ({navigation}) => {
   const [task, setTask] = useState({
@@ -45,17 +46,17 @@ const styles = StyleSheet.create({
     width:'90%',
     padding:10,
     margin:10,
-    backgroundColor:'#FFFFFF',
+    backgroundColor:colorAccent,
     borderRadius:10,
     fontSize:14,
-    color:'#1F2937'
+    color:colorPrimary
   },
   text:{
     fontSize:14,
-    color:'#1F2937'
+    color:colorPrimary
   },
   buttonSave:{
-    backgroundColor:'#2F8811',
+    backgroundColor:colorSucces,
     padding:15,
     margin:20,
     borderRadius:10,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   textButtonSave:{
-    color:'#FFFFFF',
+    color:colorAccent,
     fontSize:15
   }
 })

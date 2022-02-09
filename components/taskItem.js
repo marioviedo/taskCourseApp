@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { colorAccent, colorPrimary } from '../colors';
 
 const TaskItem = (props) => {
   return (
@@ -21,7 +22,7 @@ const TaskItem = (props) => {
 // '#1F2937' -> gris obscuro
 const styles = StyleSheet.create({
     itemContainer:{
-        backgroundColor:'#FFFFFF',        
+        backgroundColor:colorAccent,        
         padding:20,
         marginVertical:8,
         borderRadius:10,
@@ -30,10 +31,10 @@ const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     itemTitle:{
-        color:'#1F2937'
+        color:colorPrimary
     },
     itemDescription:{
-        color:'#1F2937'
+        color:colorPrimary
     }
 })
 

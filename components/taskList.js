@@ -2,6 +2,7 @@ import { FlatList, RefreshControl } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import { getTasks } from '../api';
 import TaskItem from './taskItem';
+import { colorPrimary, colorSucces } from '../colors';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([])
@@ -37,8 +38,8 @@ const TaskList = () => {
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            colors={["#2F8811"]}
-            progressBackgroundColor="#1F2937"
+            colors={[colorSucces]}
+            progressBackgroundColor={colorPrimary}
             onRefresh={refresh}
           />
         }

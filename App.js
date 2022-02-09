@@ -3,6 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { colorAccent, colorPrimary } from "./colors";
 import HomeScreen from "./screens/HomeScreen";
 import TaskFormScreen from "./screens/TaskFormScreen";
 import { Text, TouchableOpacity } from "react-native";
@@ -18,11 +19,11 @@ const App = ()=>{
           component={HomeScreen} 
           options={({navigation})=>({
             title:'Task App',
-            headerStyle:{backgroundColor:'#1F2937'},
-            headerTitleStyle:{color:'#FFFFFF'},
+            headerStyle:{backgroundColor:colorPrimary},
+            headerTitleStyle:{color:colorAccent},
             headerRight:()=>(
               <TouchableOpacity onPress={()=>{navigation.navigate('TaskFormScreen')}}>
-                <Text style={{color:'#FFFFFF'}}>New</Text>
+                <Text style={{color:colorAccent}}>New</Text>
               </TouchableOpacity>)
           })}
         />
@@ -31,9 +32,9 @@ const App = ()=>{
           component={TaskFormScreen}
           options={{
             title:'Create new task',
-            headerStyle:{backgroundColor:'#1F2937'},
-            headerTitleStyle:{color:'#FFFFFF'},            
-            headerTintColor:'#FFFFFF'
+            headerStyle:{backgroundColor:colorPrimary},
+            headerTitleStyle:{color:colorAccent},            
+            headerTintColor:colorAccent
           }}/>
       </Stack.Navigator>
     </NavigationContainer>
