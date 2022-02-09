@@ -30,7 +30,7 @@ const App = ()=>{
           name="TaskFormScreen" 
           component={TaskFormScreen}
           options={{
-            title:'Create Task',
+            title:'Create new task',
             headerStyle:{backgroundColor:'#1F2937'},
             headerTitleStyle:{color:'#FFFFFF'},            
             headerTintColor:'#FFFFFF'
