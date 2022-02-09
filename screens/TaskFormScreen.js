@@ -11,8 +11,8 @@ const TaskFormScreen = () => {
 
   const setTaskText = (name, value) => setTask({...task, [name]:value})
 
-  const submitTask = () => {
-    const response = createTask(task)
+  const submitTask = async () => {
+    const response = await createTask(task)
     console.log(response)
   }
 
