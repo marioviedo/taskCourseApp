@@ -4,12 +4,12 @@ import { colorAccent, colorPrimary } from '../colors';
 import ItemButton from './itemButton';
 import DeleteButton from './deleteButton';
 
-const TaskItem = (props) => {
+const TaskItem = ({task, handleDelete}) => {
   return (
     <View style={styles.itemContainer}>
-      <ItemButton task={props.task}/>
+      <ItemButton task={task}/>
 
-      <DeleteButton id={props.task.id}/>
+      <DeleteButton id={task.id} handleDelete={handleDelete}/>
     </View>
   );
 };

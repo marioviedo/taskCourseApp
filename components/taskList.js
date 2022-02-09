@@ -1,6 +1,6 @@
 import { FlatList, RefreshControl } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { getTasks } from '../api';
+import { getTasks, deleteTask } from '../api';
 import TaskItem from './taskItem';
 import { colorPrimary, colorSucces } from '../colors';
 
@@ -16,8 +16,13 @@ const TaskList = () => {
         loadTasks()        
     }, [])
 
+  const handleDelete = async (id) =>{        
+    await deleteTask(id)
+    await loadTasks()
+  }
+  
   const renderItem = ({item})=>{    
-    return <TaskItem task={item}/>
+    return <TaskItem task={item} handleDelete={handleDelete}/>
   }
 
   const refresh = React.useCallback(async () => {
