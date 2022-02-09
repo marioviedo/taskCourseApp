@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Layout from '../components/layout';
 import { createTask } from '../api';
 
-const TaskFormScreen = () => {
+const TaskFormScreen = ({navigation}) => {
   const [task, setTask] = useState({
     title:'',
     description:''
@@ -14,6 +14,7 @@ const TaskFormScreen = () => {
   const submitTask = async () => {
     const response = await createTask(task)
     console.log(response)
+    navigation.navigate("HomeScreen")
   }
 
   return (
