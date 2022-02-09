@@ -1,25 +1,19 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { colorAccent, colorPrimary } from '../colors';
+import ItemButton from './itemButton';
+import DeleteButton from './deleteButton';
 
 const TaskItem = (props) => {
   return (
     <View style={styles.itemContainer}>
-      <TouchableOpacity>
-        <Text style={styles.itemTitle}>{props.task.title}</Text>
-        <Text style={styles.itemDescription}>{props.task.description}</Text>
-      </TouchableOpacity>
+      <ItemButton task={props.task}/>
 
-      <TouchableOpacity>
-        <Text>Delete</Text>
-      </TouchableOpacity>
+      <DeleteButton id={props.task.id}/>
     </View>
   );
 };
 
-// '#4B5563' -> gris claro
-// '#FFFFFF' -> blanco
-// '#1F2937' -> gris obscuro
 const styles = StyleSheet.create({
     itemContainer:{
         backgroundColor:colorAccent,        
@@ -29,12 +23,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'
-    },
-    itemTitle:{
-        color:colorPrimary
-    },
-    itemDescription:{
-        color:colorPrimary
     }
 })
 
