@@ -3,8 +3,11 @@ import React, {useEffect, useState} from 'react';
 import { getTasks, deleteTask } from '../api';
 import TaskItem from './taskItem';
 import { colorPrimary, colorSucces } from '../colors';
+import {useIsFocused} from '@react-navigation/native';
 
 const TaskList = () => {
+  const isFocused = useIsFocused()
+  
   const [tasks, setTasks] = useState([])
   const [refreshing, setrefreshing] = useState(false);
 
@@ -14,13 +17,13 @@ const TaskList = () => {
     }
     useEffect(()=>{ // cuando cargue la pantalla se ejecutara esto        
         loadTasks()        
-    }, [])
+    }, [isFocused])
 
   const handleDelete = async (id) =>{        
     await deleteTask(id)
     await loadTasks()
   }
-  
+
   const renderItem = ({item})=>{    
     return <TaskItem task={item} handleDelete={handleDelete}/>
   }
