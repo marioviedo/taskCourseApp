@@ -1,22 +1,42 @@
 import { Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout';
-import { createTask } from '../api';
-import { colorAccent, colorPrimary, colorSucces } from '../colors';
+import { createTask, updateTask } from '../api';
+import { colorAccent, colorPrimary, colorSucces, colorWarning } from '../colors';
 
-const TaskFormScreen = ({navigation}) => {
+const TaskFormScreen = ({navigation, route}) => {
   const [task, setTask] = useState({
     title:'',
     description:''
   })
 
-  const setTaskText = (name, value) => setTask({...task, [name]:value})
+  const [isUpdating, setisUpdating] = useState(false);
 
+  const setTaskText = (name, value) => setTask({...task, [name]:value})
   const submitTask = async () => {
-    const response = await createTask(task)
-    console.log(response)
+    if(isUpdating)
+    {
+      const response = await updateTask(task, route.params.id)
+      console.log(response)
+      
+    }else{
+      const response = await createTask(task)
+      console.log(response)
+    }
     navigation.navigate("HomeScreen")
   }
+
+  useEffect(() => {
+    if(route.params && route.params.id)
+    {
+      setisUpdating(true)
+      navigation.setOptions({
+        headerTitle:'Update a task'
+      })
+      setTask({title:route.params.title, description:route.params.description})
+    }    
+  }, []);
+  
 
   return (
     <Layout>
@@ -25,18 +45,29 @@ const TaskFormScreen = ({navigation}) => {
         style={styles.input}
         placeholder='Write a title'
         onChangeText={(text) => setTaskText('title', text)}
+        value={task.title}
       />
 
       <Text style={styles.text}>Description: </Text>
       <TextInput
         style={styles.input}
         placeholder='Write a description'   
-        onChangeText={(text) => setTaskText('description', text)} 
+        onChangeText={(text) => setTaskText('description', text)}
+        value={task.description} 
       />
 
-      <TouchableOpacity style={styles.buttonSave} onPress={submitTask}>
-        <Text style={styles.textButtonSave}>Save task</Text>
-      </TouchableOpacity>
+      {
+        isUpdating ? (
+          <TouchableOpacity style={styles.buttonUpdate} onPress={submitTask}>        
+            <Text style={styles.textButtonUpdate}>Update task</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.buttonSave} onPress={submitTask}>        
+            <Text style={styles.textButtonSave}>Save task</Text>
+          </TouchableOpacity>
+        )
+      }
+      
     </Layout>
   );
 };
@@ -64,6 +95,18 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   textButtonSave:{
+    color:colorAccent,
+    fontSize:15
+  },
+  buttonUpdate:{
+    backgroundColor:colorWarning,
+    padding:15,
+    margin:20,
+    borderRadius:10,
+    width:'90%',
+    alignItems:'center'
+  },
+  textButtonUpdate:{
     color:colorAccent,
     fontSize:15
   }

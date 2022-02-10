@@ -24,3 +24,16 @@ export const deleteTask = async (id) =>{
     })
     return await response.json()
 }
+
+export const updateTask = async (task, id)=>{
+    const response = await fetch(`${apiEndPoint}/${id}`, {
+        method:'PUT',
+        headers:{
+            Accept:'application/json',
+            "Content-Type":'application/json'
+        },
+        body:JSON.stringify(task)
+    })
+
+    return await response.json()
+}
