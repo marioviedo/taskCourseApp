@@ -11,13 +11,13 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([])
   const [refreshing, setrefreshing] = useState(false);
 
-    const loadTasks = async () =>{        
-        const data = await getTasks()        
-        setTasks(data)    
-    }
-    useEffect(()=>{ // cuando cargue la pantalla se ejecutara esto        
-        loadTasks()        
-    }, [isFocused])
+  const loadTasks = async () =>{        
+      const data = await getTasks()        
+      setTasks(data)    
+  }
+  useEffect(()=>{ // cuando cargue la pantalla se ejecutara esto        
+      loadTasks()        
+  }, [isFocused])
 
   const handleDelete = async (id) =>{        
     await deleteTask(id)
